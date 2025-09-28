@@ -1,0 +1,95 @@
+/* Custom styles for MindBalance */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.jumbotron {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.jumbotron .btn-outline-primary {
+    border-color: white;
+    color: white;
+}
+
+.jumbotron .btn-outline-primary:hover {
+    background-color: white;
+    color: #667eea;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.progress {
+    height: 1.5rem;
+}
+
+.form-range {
+    margin-bottom: 0.5rem;
+}
+
+.badge.fs-6 {
+    font-size: 1rem !important;
+    padding: 0.5rem 1rem;
+}
+
+/* Custom colors for mood and stress indicators */
+.bg-mood-excellent { background-color: #28a745 !important; }
+.bg-mood-good { background-color: #20c997 !important; }
+.bg-mood-okay { background-color: #ffc107 !important; }
+.bg-mood-poor { background-color: #fd7e14 !important; }
+.bg-mood-terrible { background-color: #dc3545 !important; }
+
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.card-header {
+    background-color: rgba(0,123,255,.1);
+    border-bottom: none;
+    font-weight: 600;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Animation for progress bars */
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* Custom button styles */
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+}

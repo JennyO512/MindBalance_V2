@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}My Entries - MindBalance{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>My Entries</h2>
+            <a href="{{ url_for('add_entry') }}" class="btn btn-primary">Add New Entry</a>
+        </div>
+    </div>
+</div>
+
+{% if entries %}
+<div class="row">
+    {% for entry in entries %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-3 text-muted">{{ entry.date.strftime('%A, %B %d, %Y at %I:%M %p') }}</h6>
+                
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-label small">Mood Rating</label>
+                            <div class="progress">
+                                <div class="progress-bar bg-{{ 'success' if entry.mood_rating >= 7 else ('warning' if entry.mood_rating >= 4 else 'danger') }}" 
+                                     role="progressbar" style="width: {{ entry.mood_rating * 10 }}%">
+                                    {{ entry.mood_rating }}/10
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small">Stress Level</label>
+                            <div class="progress">
+                                <div class="progress-bar bg-{{ 'danger' if entry.stress_level >= 7 else ('warning' if entry.stress_level >= 4 else 'success') }}" 
+                                     role="progressbar" style="width: {{ entry.stress_level * 10 }}%">
+                                    {{ entry.stress_level }}/10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if entry.activities %}
+                <div class="mb-3">
+                    <label class="form-label small">Activities</label>
+                    <div>
+                        {% for activity in entry.activities %}
+                            <span class="badge bg-secondary me-1 mb-1">{{ activity.title() }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if entry.notes %}
+                <div class="mb-3">
+                    <label class="form-label small">Notes</label>
+                    <p class="card-text">{{ entry.notes }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if entries|length > 6 %}
+<div class="row">
+    <div class="col-12 text-center mt-4">
+        <p class="text-muted">Showing {{ entries|length }} entries</p>
+    </div>
+</div>
+{% endif %}
+
+{% else %}
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="alert alert-info">
+            <h4>No entries yet!</h4>
+            <p>You haven't added any entries yet. Start tracking your mental well-being today.</p>
+            <a href="{{ url_for('add_entry') }}" class="btn btn-primary">Add Your First Entry</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
